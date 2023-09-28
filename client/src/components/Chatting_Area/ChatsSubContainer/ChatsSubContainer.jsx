@@ -219,7 +219,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
         <>
           {!selectedChat.isGroupChat ? (
             <div className={styles.header}>
-              <ProfileModal user={getSender(user.user, selectedChat.users)}>
+              <ProfileModal user={getSender(user?.user, selectedChat.users)}>
                 <div className={styles.chatName}>
                   <div
                     className={styles.backBtn}
@@ -229,11 +229,11 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
                   </div>
                   <Avatar
                     size={40}
-                    name={getSender(user.user, selectedChat.users).name}
-                    image={getSender(user.user, selectedChat.users).image}
+                    name={getSender(user?.user, selectedChat.users).name}
+                    image={getSender(user?.user, selectedChat.users).image}
                   />
                   <div className={styles.info}>
-                    {getSender(user.user, selectedChat.users).name}
+                    {getSender(user?.user, selectedChat.users).name}
                     <span className={styles.typing}>
                       {(isTyping || isAITyping) && "Typing..."}
                     </span>
