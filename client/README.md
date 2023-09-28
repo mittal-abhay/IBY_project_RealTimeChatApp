@@ -1,14 +1,14 @@
-##IBY-Project Real-time-chat-app
+## IBY-Project Real-time-chat-app
 
 - Visit <hhttps://mioko-chat.onrender.com>
 
 ---
 
-# Name - Abhay Mittal
+### Name - Abhay Mittal
 
-# University - IIT (ISM) Dhanbad
+### University - IIT (ISM) Dhanbad
 
-# Department - Computer Science and Engineering
+### Department - Computer Science and Engineering
 
 ### Features
 
@@ -19,47 +19,28 @@
 - Group chat
 - One-on-one chat
 - Responsive
+- AI Chat (Mioko)
 
 ---
 
 #### Demo
 
-## ![ScreenShot](./screenshots/1.png)
+#### Login Page;
 
-## ![ScreenShot](./screenshots/2.png)
+## ![ScreenShot](./Screenshots/screenshot1.png)
 
-## ![ScreenShot](./screenshots/3.png)
+#### AI Chat (Mioko)
 
-### Guest User
+## ![ScreenShot](./Screenshots/screenshot2.png)
 
-## ![Gif](./screenshots/4.gif)
+#### RealTimeChat(with real time typing status)
 
-### User Signup
+## ![ScreenShot](./Screenshots/screenshot3.png)
 
-## ![Gif](./screenshots/5.gif)
+#### Responsive design
 
-### Search User
+## ![ScreenShot](./Screenshots/screenshot4.png)
 
-## ![Gif](./screenshots/6.gif)
+#### Dark theme
 
-### View Profile
-
-## ![Gif](./screenshots/7.gif)
-
-### Guest User
-
-## ![Gif](./screenshots/8.png)
-
-### Search User
-
-## ![Gif](./screenshots/9.png)
-
-### Your profile
-
-## ![Gif](./screenshots/10.png)
-
-### Create Group
-
-## ![Gif](./screenshots/11.gif)
-
-## ![Gif](./screenshots/12.gif)
+## ![ScreenShot](./Screenshots/screenshot5.png)
