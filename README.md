@@ -31,7 +31,7 @@
 
 #### AI Chat (Mioko)
 
-## ![ScreenShot](./client/Screenshots/screenshot1.png)
+## ![ScreenShot](./client/Screenshots/screenshot2.png)
 
 #### RealTimeChat(with real time typing status)
 
