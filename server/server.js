@@ -9,20 +9,11 @@ const messageRoutes = require("./routes/messageRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const path = require("path");
 const axios = require("axios");
-const cors = require("cors");
 const Message = require("./models/message.js");
 
 dbConnect();
 const app = express();
 app.use(express.json());
-app.use(cors());
-
-// app.use(
-//   cors({
-//     origin: ["https://mioko.netlify.app"],
-//   })
-// );
-app.use(cors());
 
 // Main routes
 app.use("/api/users", userRoutes);
