@@ -50,6 +50,7 @@ const Homepage = () => {
           )}
         </div>
       </div>
+      <ToastContainer theme="colored" />
     </div>
   );
 };

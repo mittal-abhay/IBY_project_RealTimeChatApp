@@ -23,14 +23,12 @@ const Register = () => {
   const { name, email, password, cf_password, pic } = userData;
 
   const postDetails = (pics) => {
-    // console.log(pics);
     setUploadingImage(true);
     if (pics === undefined) {
       toast.warn("Please add a Profile Picture");
       return;
     }
     if (pics.type === "image/png" || pics.type === "image/jpeg") {
-      console.log(1);
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "chat-app");
@@ -41,13 +39,11 @@ const Register = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.url);
           setUserData({ ...userData, ["pic"]: data.url.toString() });
           setUploadingImage(false);
         })
         .catch((err) => {
           toast.error(err);
-          console.log(err);
           setUploadingImage(false);
         });
     } else {
@@ -63,7 +59,11 @@ const Register = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
     const message = valid(name, email, password, cf_password);
-    if (message) return toast.warn(message);
+    if (message) {
+      toast.warn(message);
+      setIsLoading(false);
+      return;
+    }
     // ? request
     try {
       const config = {
@@ -71,7 +71,6 @@ const Register = () => {
           "Content-type": "application/json",
         },
       };
-      console.log(name, email, password, pic);
       const { data } = await axios.post(
         "/api/users",
         { name, email, password, pic },
@@ -81,15 +80,12 @@ const Register = () => {
       localStorage.setItem("User", JSON.stringify(data));
       setIsLoading(false);
       navigate("/chats");
-    } catch (error) {
-      toast.error(error);
+    } catch (err) {
+      toast.error(err);
       setIsLoading(false);
       return;
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Create Account</h1>
@@ -140,6 +136,7 @@ const Register = () => {
             onChange={(e) => postDetails(e.target.files[0])}
           />
         </div>
+        {isLoading && <Loader />}
         <button className={styles.registerButton} onClick={handleSubmit}>
           {uploadingImage ? "Uploading..." : "Register"}
         </button>
