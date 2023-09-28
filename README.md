@@ -55,3 +55,36 @@ This real-time chat application utilizes the MERN stack with MongoDB for flexibl
 #### Dark theme
 
 ## ![ScreenShot](./client/Screenshots/screenshot5.png)
+
+
+Clone the project from the repository
+
+```bash
+  git clone git@github.com:mittal-abhay/IBY_project_RealTimeChatApp.git
+```
+
+Install dependencies
+
+```bash
+  cd client
+  npm install --force
+```
+
+```bash
+  cd server
+  npm install --force
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+Start the Client
+
+```bash
+  //open new terminal
+  cd frontend
+  npm start
+```
