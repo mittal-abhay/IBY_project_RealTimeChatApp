@@ -1,6 +1,7 @@
 ## IBY-Project Real-time-chat-app
 
 - Visit <https://mioko-chat.onrender.com>
+- System-design-doc <https://docs.google.com/document/d/1co_2fTJBtwdriWVUoYpdFRbENUQh81rJHvgBwFk43_g/edit?usp=sharing>
 
 ---
 
