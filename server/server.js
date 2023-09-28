@@ -10,10 +10,12 @@ const notificationRoutes = require("./routes/notificationRoutes");
 const path = require("path");
 const axios = require("axios");
 const Message = require("./models/message.js");
+const cors = require("cors");
 
 dbConnect();
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Main routes
 app.use("/api/users", userRoutes);
