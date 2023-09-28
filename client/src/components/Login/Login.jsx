@@ -57,7 +57,10 @@ const Login = () => {
       <button
         className={styles.guest}
         onClick={() => {
-          setUserData({ email: "guest@ybm.com", password: "guest" });
+          setUserData({
+            email: "guest@mioko-chat.onrender.com",
+            password: "guest@123",
+          });
         }}
         disabled={loading}
       >
@@ -91,7 +94,8 @@ const Login = () => {
           <span
             className={styles.showPassword}
             onClick={(e) => {
-              userData.email !== "guest@ybm.com" && handleClick(e);
+              userData.email !== "guest@mioko-chat.onrender.com" &&
+                handleClick(e);
             }}
           >
             {show ? "Hide" : "Show"}

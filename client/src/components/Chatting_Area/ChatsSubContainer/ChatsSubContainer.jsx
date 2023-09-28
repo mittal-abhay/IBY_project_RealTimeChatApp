@@ -11,9 +11,11 @@ import ChatMessages from "../ChatMessages/ChatMessages";
 import styles from "./ChatsSubContainer.module.css";
 import Avatar from "../../Avatar/Avatar";
 import { IoSend } from "react-icons/io5";
+// for socket.io
+import io from "socket.io-client";
 const ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 axios.defaults.baseURL = ENDPOINT;
-var selectedChatCompare;
+var socket, selectedChatCompare;
 
 const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   const {
@@ -24,9 +26,6 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
     setNotification,
     isAIChat,
     setIsAIChat,
-    setOnlineUsers,
-    onlineUsers,
-    socket,
   } = ChatState();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -59,6 +58,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   };
 
   const sendMessage = async (e) => {
+    console.log("Send Message");
     socket.emit("stop typing", selectedChat._id);
     try {
       const config = {
@@ -85,6 +85,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   };
 
   const sendAIMessage = async (e) => {
+    console.log("AI Send Message");
     socket.emit("stop typing", selectedChat._id);
     try {
       const config = {
@@ -132,8 +133,9 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    if (!socket) return;
+    socket = io(ENDPOINT);
     socket.emit("setup", user.user);
+    socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", (id) => {
       if (selectedChat._id === id) {
         setIsTyping(true);
@@ -166,6 +168,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     socket.on("message received", (newMessageReceived) => {
+      console.log(newMessageReceived);
       if (
         !selectedChatCompare ||
         selectedChatCompare._id !== newMessageReceived.chatId._id
@@ -185,6 +188,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   }, [notification]);
 
   const typingHandler = (e) => {
+    console.log("typing");
     setNewMessage(e.target.value);
     if (!socketConnected) return;
     if (!typing) {
@@ -231,17 +235,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
                   <div className={styles.info}>
                     {getSender(user.user, selectedChat.users).name}
                     <span className={styles.typing}>
-                      {isTyping
-                        ? "Typing..."
-                        : onlineUsers
-                            .map((_user) => _user.userId)
-                            .includes(
-                              selectedChat?.users.filter(
-                                (_user) => _user._id !== user.user._id
-                              )[0]?._id
-                            )
-                        ? "Online"
-                        : ""}
+                      {(isTyping || isAITyping) && "Typing..."}
                     </span>
                   </div>
                 </div>

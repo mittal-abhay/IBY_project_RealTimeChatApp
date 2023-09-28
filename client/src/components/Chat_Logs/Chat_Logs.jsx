@@ -58,6 +58,7 @@ const Chat_Logs = ({ fetchAgain, className }) => {
                 key={index}
                 onClick={() => {
                   setSelectedChat(chat);
+                  console.log(chat);
                   let isAI = false;
                   chat.users?.forEach((_user) => {
                     if (

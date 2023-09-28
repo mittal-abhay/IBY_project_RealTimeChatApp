@@ -67,13 +67,13 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handleSubmit = async () => {
-    if (user.user.email === "guest@ybm.com") {
+    if (user.user.email === "guest@mioko-chat.onrender.com") {
       toast.info("Guest cannot create groups");
       return;
     }
     if (
       selectedUser.map((u) => {
-        if (u.email === "guest@ybm.com") {
+        if (u.email === "guest@mioko-chat.onrender.com") {
           toast.info("Guest user can not be added in group");
         }
         return {};

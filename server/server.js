@@ -57,23 +57,16 @@ const io = require("socket.io")(server, {
   },
 });
 
-let onlineUsers = [];
-
 io.on("connection", (socket) => {
+  console.log("Sockets are in action");
   socket.on("setup", (userData) => {
     socket.join(userData._id);
-    socket.broadcast.emit("connected", {
-      userId: userData._id,
-      socketId: socket.id,
-    });
-    onlineUsers.push({
-      userId: userData._id,
-      socketId: socket.id,
-    });
-    socket.emit("get-online-users", onlineUsers);
+    console.log(userData.name, "connected");
+    socket.emit("connected");
   });
   socket.on("join chat", (room) => {
     socket.join(room);
+    console.log("User joined room: " + room);
   });
   socket.on("new message", async (newMessage) => {
     var chat = newMessage.chatId;
@@ -87,6 +80,7 @@ io.on("connection", (socket) => {
     const chat = newMessage.chatId;
     if (!chat.users) return console.log("ai chat.users not defined");
     const sender = newMessage.sender;
+    console.log(sender);
 
     socket.emit("ai typing", chat._id);
 
@@ -146,8 +140,7 @@ io.on("connection", (socket) => {
     socket.in(room).emit("stop typing", room);
   });
   socket.on("disconnect", () => {
-    onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
-    socket.emit("get-online-users", onlineUsers);
+    console.log("USER DISCONNECTED");
     socket.leave(socket.id);
   });
 });
