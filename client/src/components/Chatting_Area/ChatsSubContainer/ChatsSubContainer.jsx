@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import { ChatState } from "../../../context/ChatProvider";
 import { IoIosArrowBack } from "react-icons/io";
 import { getSender } from "../../../config/ChatLogics";
@@ -11,6 +11,10 @@ import ChatMessages from "../ChatMessages/ChatMessages";
 import styles from "./ChatsSubContainer.module.css";
 import Avatar from "../../Avatar/Avatar";
 import { IoSend } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import {BsCameraVideoFill} from 'react-icons/bs';
+import {IoCall} from 'react-icons/io5';
+
 // for socket.io
 import io from "socket.io-client";
 const ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
@@ -34,7 +38,6 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState();
   const [isTyping, setIsTyping] = useState();
   const [isAITyping, setIsAITyping] = useState(false);
-
   const fetchAllMessages = async () => {
     if (!selectedChat) return;
     try {
@@ -213,6 +216,31 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
     else console.log("AI Chat Deactivated");
   }, [isAIChat]);
 
+  const navigate = useNavigate();
+  const handleJoinRoomvideo = useCallback(() => {
+    const propsToPass = {
+      chat:selectedChat,
+      chatId: selectedChat._id,
+      userId: user.user._id,
+      username: user.user.name,
+      voice:false,
+    };
+    navigate("/room", { state: propsToPass });
+   
+  }, [navigate, selectedChat, user]);
+
+
+  const handleJoinRoomvoice = useCallback(() => {
+    const propsToPass = {
+      chat:selectedChat,
+      chatId: selectedChat._id,
+      userId: user.user._id,
+      username: user.user.name,
+      voice:true,
+    };
+    navigate("/room", { state: propsToPass });
+  }, [navigate, selectedChat, user]);
+
   return (
     <>
       {selectedChat ? (
@@ -238,6 +266,11 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
                       {(isTyping || isAITyping) && "Typing..."}
                     </span>
                   </div>
+                {!isAIChat?
+                  <div className={styles.call}>
+                      <span onClick={handleJoinRoomvideo}><BsCameraVideoFill/></span>
+                      <span onClick={handleJoinRoomvoice}><IoCall/></span>
+                </div> : null}
                 </div>
               </ProfileModal>
             </div>
@@ -257,7 +290,11 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
                 />
                 <div>{selectedChat.chatName}</div>
               </div>
-
+              {!isAIChat?
+                  <div className={styles.call}>
+                      <span onClick={handleJoinRoomvideo}><BsCameraVideoFill/></span>
+                      <span onClick={handleJoinRoomvoice}><IoCall/></span>
+                </div> : null}
               <UpdateGroupChatModal
                 fetchAgain={fetchAgain}
                 setFetchAgain={setFetchAgain}

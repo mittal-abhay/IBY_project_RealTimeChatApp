@@ -133,3 +133,11 @@
 .emojiBtn:hover {
   background-color: var(--color-background);
 }
+
+.call {
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+}
