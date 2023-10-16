@@ -1,6 +1,8 @@
 ## IBY-Project Real-time-chat-app
 
-- Visit <https://mioko-chat.onrender.com>
+This real-time chat application utilizes the MERN stack with MongoDB for flexible data storage. It offers one-to-one and group chatting, real-time typing status, and interaction with the AI chatbot(Mioko). The tech stack includes ReactJS for the client, Express.js for the server, socket.io for real-time communication, and JWT for authentication.
+
+- Visit <https://mioko-chat.netlify.app>
 - System-design-doc <https://docs.google.com/document/d/1co_2fTJBtwdriWVUoYpdFRbENUQh81rJHvgBwFk43_g/edit?usp=sharing>
 
 ---
@@ -10,6 +12,14 @@
 ### University - IIT (ISM) Dhanbad
 
 ### Department - Computer Science and Engineering
+
+## Tech Stack Used
+
+- **M**ongo DB
+- **N**ode JS
+- **E**xpress JS
+- **R**eact JS
+- **S**ocket.io
 
 ### Features
 
@@ -45,3 +55,36 @@
 #### Dark theme
 
 ## ![ScreenShot](./client/Screenshots/screenshot5.png)
+
+
+Clone the project from the repository
+
+```bash
+  git clone git@github.com:mittal-abhay/IBY_project_RealTimeChatApp.git
+```
+
+Install dependencies
+
+```bash
+  cd client
+  npm install --force
+```
+
+```bash
+  cd server
+  npm install --force
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+Start the Client
+
+```bash
+  //open new terminal
+  cd frontend
+  npm start
+```
