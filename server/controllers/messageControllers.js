@@ -22,7 +22,6 @@ const sendMessage = asyncHandler(async (req, res) => {
     content: content,
     chatId: chatId,
   };
-  // query DB
   try {
     var message = await Message.create(newMessage);
     message = await message.populate("sender", "name image");
@@ -43,7 +42,7 @@ const sendMessage = asyncHandler(async (req, res) => {
 
 // @desc		Fetch all the messages
 // @route		GET /message:chatId
-// @access		Private
+// @access	Private
 const fetchMessage = asyncHandler(async (req, res) => {
   const { chatId } = req.params;
   try {

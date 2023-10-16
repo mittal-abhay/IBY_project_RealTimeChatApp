@@ -35,7 +35,7 @@ const Header = () => {
   );
 
   useEffect(() => {
-    localStorage.setItem("ybm-chat-theme", theme);
+    localStorage.setItem("ybm-chat-theme", theme); 
     document.body.setAttribute("aria-theme", theme);
   }, [theme]);
 
@@ -58,7 +58,7 @@ const Header = () => {
       const { data } = await axios.get(`/api/users?search=${search}`, config);
       setSearchResult(data.users);
       setLoading(false);
-    } catch (err) {
+    } catch (err){
       toast.error(err);
       setLoading(false);
     }

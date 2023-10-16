@@ -8,7 +8,6 @@ const addNewNotification = asyncHandler(async (req, res) => {
       notificationId: notification,
     });
     if (alreadyExist) return res.send("duplicates not allowed");
-    console.log(req.body);
     var newNotification = await Notification.create({
       user: req.user._id,
       notificationId: notification,

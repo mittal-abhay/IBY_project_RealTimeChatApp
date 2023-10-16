@@ -47,7 +47,7 @@ const Register = () => {
           setUploadingImage(false);
         });
     } else {
-      toast.error("Invalid format of Image\n Only .png accepted");
+      toast.error("Invalid format of Image.");
       setUploadingImage(false);
       return;
     }

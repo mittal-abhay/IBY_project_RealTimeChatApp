@@ -5,6 +5,7 @@ const asyncHandler = require("express-async-handler");
 // @desc		Access or initiate a chat between two persons
 // @route		POST /api/chats
 // @access		private
+
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body; // userId of other person (jiske saath vo chat krna chah rha h)
   if (!userId) {
@@ -61,7 +62,7 @@ const fetchChats = asyncHandler(async (req, res) => {
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
       .populate("latestMessage")
-      .sort({ updatedAt: -1 });
+      .sort({ updatedAt: -1 }); //sort by latest updated chat
 
     allChats = await User.populate(allChats, {
       path: "latestMessage.sender",
@@ -169,7 +170,7 @@ const addToGroup = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		add a new member to the group
+// @desc		remove a member from the group
 // @route		PUT /api/chats/groupAdd
 // @access		Private
 const removeFromGroup = asyncHandler(async (req, res) => {

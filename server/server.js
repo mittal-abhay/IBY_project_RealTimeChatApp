@@ -100,7 +100,7 @@ io.on("connection", (socket) => {
       .post(
         "https://api.pawan.krd/v1/completions",
         {
-          model: "pai-001-beta",
+          model: "pai-001-light-beta",
           prompt: `${sender.name}: Assume your name is Mioko. ${newMessage.content}\\nMioko:`,
           temperature: 0.7,
           max_tokens: 256,

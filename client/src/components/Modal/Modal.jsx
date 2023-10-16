@@ -12,6 +12,7 @@ const Modal = ({ onClose, children, isOpen }) => {
     }
   }, [isOpen]);
 
+
   return (
     <dialog ref={modalRef} className={styles.modal}>
       <div className={styles.close} onClick={onClose}>
