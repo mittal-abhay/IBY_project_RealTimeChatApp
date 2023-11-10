@@ -134,6 +134,11 @@ io.on("connection", (socket) => {
         aiMessage.error = true;
         io.to(socket.id).emit("message received", aiMessage);
         socket.emit("ai stop typing", chat._id);
+        Message.create({
+                sender: process.env.AI_CHAT_USER_ID,
+                content: aiMessage.content,
+                chatId: chat._id,
+              });
       // });
   });
   socket.on("typing", (room) => {
