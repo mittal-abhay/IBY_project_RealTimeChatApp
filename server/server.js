@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
     const chat = newMessage.chatId;
     if (!chat.users) return console.log("ai chat.users not defined");
     const sender = newMessage.sender;
-    console.log(sender);
+    // console.log(sender);
 
     socket.emit("ai typing", chat._id);
 
@@ -96,44 +96,45 @@ io.on("connection", (socket) => {
       chatId: chat,
     };
 
-    axios
-      .post(
-        "https://api.pawan.krd/v1/completions",
-        {
-          model: "pai-001-light-beta",
-          prompt: `${sender.name}: Assume your name is Mioko. ${newMessage.content}\\nMioko:`,
-          temperature: 0.7,
-          max_tokens: 256,
-          stop: [`${sender.name}:`, "Mioko:"],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.AI_CHAT_API_KEY}`,
-          },
-        }
-      )
-      .then((res) => {
+    // axios
+    //   .post(
+    //     "https://api.pawan.krd/v1/completions",
+    //     {
+    //       model: "pai-001-light-beta",
+    //       prompt: `${sender.name}: Assume your name is Mioko. ${newMessage.content}\\nMioko:`,
+    //       temperature: 0.7,
+    //       max_tokens: 256,
+    //       stop: [`${sender.name}:`, "Mioko:"],
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${process.env.AI_CHAT_API_KEY}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     aiMessage.content =
+    //       res.data.choices[0].text.split("\n\n")[
+    //         Math.floor(Math.random() * res.data.choices.length)
+    //       ] || "I have no response for this. Please try something else on me.";
+    //     io.to(socket.id).emit("message received", aiMessage);
+    //     socket.emit("ai stop typing", chat._id);
+    //     Message.create({
+    //       sender: process.env.AI_CHAT_USER_ID,
+    //       content: aiMessage.content,
+    //       chatId: chat._id,
+    //     });
+    //   })
+    //   .catch((err) => {
+        // console.log(err.response.data.error);
         aiMessage.content =
-          res.data.choices[0].text.split("\n\n")[
-            Math.floor(Math.random() * res.data.choices.length)
-          ] || "I have no response for this. Please try something else on me.";
-        io.to(socket.id).emit("message received", aiMessage);
-        socket.emit("ai stop typing", chat._id);
-        Message.create({
-          sender: process.env.AI_CHAT_USER_ID,
-          content: aiMessage.content,
-          chatId: chat._id,
-        });
-      })
-      .catch((err) => {
-        console.log(err.response.data.error);
-        aiMessage.content =
-          "Something went wrong while processing your query. Please try again.";
+          // "Something went wrong while processing your query. Please try again.";
+          "Servers are temporarily down. Please try again later."
         aiMessage.error = true;
         io.to(socket.id).emit("message received", aiMessage);
         socket.emit("ai stop typing", chat._id);
-      });
+      // });
   });
   socket.on("typing", (room) => {
     socket.in(room).emit("typing", room);

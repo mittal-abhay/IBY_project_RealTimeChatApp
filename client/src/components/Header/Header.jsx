@@ -31,11 +31,11 @@ const Header = () => {
     setIsAIChat,
   } = ChatState();
   const [theme, setTheme] = useState(
-    localStorage.getItem("ybm-chat-theme") || "light"
+    localStorage.getItem("mioko-chat-theme") || "light"
   );
 
   useEffect(() => {
-    localStorage.setItem("ybm-chat-theme", theme); 
+    localStorage.setItem("mioko-chat-theme", theme); 
     document.body.setAttribute("aria-theme", theme);
   }, [theme]);
 
@@ -124,7 +124,7 @@ const Header = () => {
           <IoSearch />
           <span>Search People</span>
         </button>
-        <div className={styles.logo}>YBM Chat</div>
+        <div className={styles.logo}>Mioko Chat</div>
         <div className={styles.actions}>
           <Menu
             toggleComponent={

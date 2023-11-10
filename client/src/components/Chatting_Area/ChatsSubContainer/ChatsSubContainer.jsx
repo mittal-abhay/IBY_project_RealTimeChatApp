@@ -139,6 +139,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
     socket = io(ENDPOINT);
     socket.emit("setup", user.user);
     socket.on("connected", () => setSocketConnected(true));
+    
     socket.on("typing", (id) => {
       if (selectedChat._id === id) {
         setIsTyping(true);
@@ -332,7 +333,7 @@ const ChatsSubContainer = ({ fetchAgain, setFetchAgain }) => {
         </>
       ) : (
         <div className={styles.noChatSelected}>
-          <h2>YBM Chat</h2>
+          <h2>Mioko Chat</h2>
           <p>Select on a user to start chat</p>
         </div>
       )}

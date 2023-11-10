@@ -9,7 +9,7 @@ export const isSameSender = (messages, mess, index, userId) => {
       messages[index + 1].sender._id === undefined) &&
     messages[index].sender._id !== userId
   );
-};
+};  
 
 export const isLastMessage = (messages, index, userId) => {
   return (
